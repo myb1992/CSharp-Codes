@@ -1,0 +1,80 @@
+namespace LogicaProgramacao
+{
+    public partial class frmExFor2 : Form
+    {
+        public frmExFor2()
+        {
+            InitializeComponent();
+        }
+
+        List<int> lstNumerosInteiros = new List<int>();
+
+        private void AdicionarNumero(int numero)
+        {
+            lstNumerosInteiros.Add(numero);
+        }
+        
+        private void CarregarLista()
+        {
+            lbxNumeros.DataSource = null;
+            lbxNumeros.DataSource = lstNumerosInteiros;
+        }
+        private void LimparCampos()
+        {
+            txtNumero.Clear();
+           
+        }
+        private void VerificarNumero(int pesquisarNumero, int tipoPesquisa)
+        {
+            for (int i = 0; i < lstNumerosInteiros.Count; i++)
+            {
+                // Verifica se vai pesquisar os números maiores que o parametro
+
+                if (tipoPesquisa == 1)
+                {
+                    if (pesquisarNumero < lstNumerosInteiros[i])
+                    {
+                        MessageBox.Show(Convert.ToString(lstNumerosInteiros[i]));
+                    }
+                }
+                else if(tipoPesquisa == 2)
+                {
+                    if(pesquisarNumero > lstNumerosInteiros[i])
+                    {
+                        MessageBox.Show(Convert.ToString(lstNumerosInteiros[i]));
+                    }
+                }
+
+            }
+
+        }
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            int numero;
+            numero = Convert.ToInt32(txtNumero.Text);
+            AdicionarNumero(numero);
+            CarregarLista();
+            LimparCampos();
+
+
+        }
+
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {
+            int pesquisarNumero;
+            pesquisarNumero = Convert.ToInt32(txtPesquisarPor.Text);
+
+            if (rbOpAcima.Checked)
+            {
+                VerificarNumero(pesquisarNumero,1);
+                
+            }
+            else if (rbOpAbaixo.Checked)
+            {
+                VerificarNumero(pesquisarNumero,2);
+            }
+        }
+    }
+
+
+}
