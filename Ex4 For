@@ -1,0 +1,78 @@
+namespace LogicaProgramacao
+{
+    public partial class frmExFor4 : Form
+    {
+        public frmExFor4()
+        {
+            InitializeComponent();
+        }
+        List<int> lstNumeros = new List<int>();
+        
+        
+        private bool VerificarCampos(string numeros)
+        {
+            if (numeros.Trim() == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        private void AdicionarNumeros(int numeros)
+        {
+            lstNumeros.Add(numeros);
+        }
+        private void LimparCampos()
+        {
+            txtNumeros.Clear();
+        }
+        private void ContarParesImpares()
+        {
+            int contPares, contImpares;
+            contPares = 0;
+            contImpares = 0;
+            
+            
+
+
+            for (int i =0; i < lstNumeros.Count; i++)
+                
+            {
+                if (lstNumeros[i] % 2 ==0)
+                {
+                   
+                   contPares = contPares + 1;  
+                }
+                else
+                {
+                    contImpares = contImpares + 1;
+                }
+            }
+            txtPar.Text = Convert.ToString(contPares);
+            txtImpar.Text = Convert.ToString(contImpares);
+        }
+        
+        
+        
+        private void btnAdicionar_Click(object sender, EventArgs e)
+        {
+            if (!VerificarCampos(txtNumeros.Text))
+            {
+                MessageBox.Show("Favor verificar o campo Números");
+            }
+            else
+            {
+                int numeros;
+                numeros = Convert.ToInt32(txtNumeros.Text);
+                AdicionarNumeros(numeros);
+                LimparCampos(); 
+            }
+        }
+        private void btnVerificar_Click(object sender, EventArgs e)
+        {
+          ContarParesImpares();  
+        }
+    }
+}
