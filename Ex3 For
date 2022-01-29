@@ -1,0 +1,68 @@
+    public partial class frmExFor3 : Form
+    {
+        public frmExFor3()
+        {
+            InitializeComponent();
+        }
+        List<string> lstAdicionarTabuada = new List<string>();
+
+        private bool VerificarCampos(string tabuada, string calcular)
+        {
+            if(tabuada.Trim()=="" || calcular.Trim() == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void CalcularTabuada(int tabuada, int calcular)
+        {
+            for (int i = 1; i <= calcular; i++)
+              
+            {
+                int r;
+                string texto;
+                r = (tabuada * i);
+                texto = (" x " + i + " = ");
+
+
+                lstAdicionarTabuada.Add(Convert.ToString(tabuada + texto + r));
+                
+            }
+            
+            
+        }
+        private void CarregarLista() 
+        {
+            lbxTabuada.DataSource = null;
+            lbxTabuada.DataSource = lstAdicionarTabuada;
+        }
+        private void LimparCampos()
+        {
+            txtCalcular.Clear();
+            txtTabuada.Clear();
+        }
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            if (!VerificarCampos(txtTabuada.Text, txtCalcular.Text))
+            {
+                MessageBox.Show("Favor verificar os campos");
+            }
+            else
+            {
+                int tabuada, calcular;
+                tabuada = Convert.ToInt32(txtTabuada.Text);
+                calcular = Convert.ToInt32(txtCalcular.Text);
+                CalcularTabuada(tabuada, calcular);
+                CarregarLista();
+                LimparCampos();
+
+            }
+              
+
+            }
+        }
+    }
